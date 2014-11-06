@@ -42,7 +42,7 @@ namespace WebApiCursos.Repositorio
             return n;
         }
 
-        public int Borrar(int id)
+        public virtual int Borrar(int id)
         {
 
             var obj = Get(id);
@@ -61,7 +61,7 @@ namespace WebApiCursos.Repositorio
             return n;
         }
 
-        public int Borrar(Expression<Func<TEntidad, bool>> lam)
+        public virtual int Borrar(Expression<Func<TEntidad, bool>> lam)
         {
             var datos = Get(lam);
             DbSet.RemoveRange(datos);
@@ -79,7 +79,7 @@ namespace WebApiCursos.Repositorio
 
         }
 
-        public int Actualizar(TEntidad modelo)
+        public virtual int Actualizar(TEntidad modelo)
         {
             Context.Entry(modelo).State = EntityState.Modified;
             int n = 0;
@@ -95,17 +95,17 @@ namespace WebApiCursos.Repositorio
 
         }
 
-        public List<TEntidad> Get()
+        public virtual List<TEntidad> Get()
         {
             return DbSet.ToList();
         }
 
-        public List<TEntidad> Get(Expression<Func<TEntidad, bool>> lam)
+        public virtual List<TEntidad> Get(Expression<Func<TEntidad, bool>> lam)
         {
             return DbSet.Where(lam).ToList();
         }
 
-        public TEntidad Get(int pk)
+        public virtual TEntidad Get(int pk)
         {
             return DbSet.Find(pk);
         }

@@ -10,7 +10,7 @@ namespace WebApiCursos.Repositorio
     interface IRepositorio<TEntidad>
     {
         int Add(TEntidad modelo);
-        int Borrar(TEntidad modelo);
+        int Borrar(int id);
         int Borrar(Expression<Func<TEntidad, bool>> lam);
         int Actualizar(TEntidad modelo);
         List<TEntidad> Get();

@@ -26,39 +26,88 @@ namespace WebApiCursos.Repositorio
 
         }
 
-        public int Add(TEntidad modelo)
+        public virtual int Add(TEntidad modelo)
         {
-            throw new NotImplementedException();
+            DbSet.Add(modelo);
+            int n = 0;
+            try
+            {
+                n = Context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return n;
         }
 
-        public int Borrar(TEntidad modelo)
+        public int Borrar(int id)
         {
-            throw new NotImplementedException();
+
+            var obj = Get(id);
+
+            DbSet.Remove(obj);
+            int n = 0;
+            try
+            {
+                n = Context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return n;
         }
 
         public int Borrar(Expression<Func<TEntidad, bool>> lam)
         {
-            throw new NotImplementedException();
+            var datos = Get(lam);
+            DbSet.RemoveRange(datos);
+            int n = 0;
+            try
+            {
+                n = Context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return n;
+
         }
 
         public int Actualizar(TEntidad modelo)
         {
-            throw new NotImplementedException();
+            Context.Entry(modelo).State = EntityState.Modified;
+            int n = 0;
+            try
+            {
+                n = Context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return n;
+
         }
 
         public List<TEntidad> Get()
         {
-            throw new NotImplementedException();
+            return DbSet.ToList();
         }
 
         public List<TEntidad> Get(Expression<Func<TEntidad, bool>> lam)
         {
-            throw new NotImplementedException();
+            return DbSet.Where(lam).ToList();
         }
 
         public TEntidad Get(int pk)
         {
-            throw new NotImplementedException();
+            return DbSet.Find(pk);
         }
     }
 }

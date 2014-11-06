@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Runtime.Serialization;
+
 namespace WebApiCursos.Models
 {
     using System;
@@ -25,7 +27,8 @@ namespace WebApiCursos.Models
         public System.DateTime inicio { get; set; }
         public int duracion { get; set; }
     
-        public virtual Profesor Profesor1 { get; set; }
-        public virtual ICollection<Aula> Aula { get; set; }
+        public Profesor Profesor1 { get; set; }
+        public ICollection<Aula> Aula { get; set; }
+       
     }
 }

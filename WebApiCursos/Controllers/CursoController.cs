@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using WebApiCursos.Models;
+using WebApiCursos.Models.ViewModel;
 using WebApiCursos.Repositorio;
 
 namespace WebApiCursos.Controllers
@@ -17,7 +18,26 @@ namespace WebApiCursos.Controllers
         // GET: api/Curso
         public IEnumerable<Curso> Get()
         {
-            return repo.Get();
+            var data = repo.Get();
+           /* List<CursoViewModel> lc=new List<CursoViewModel>();
+
+            foreach (var curso in data)
+            {
+                lc.Add(new CursoViewModel()
+                {
+                    idCurso = curso.idCurso,
+                    NombreProfesor = curso.Profesor1.nombre,
+                    nombre = curso.nombre,
+                    duracion = curso.duracion,
+                    inicio = curso.inicio,
+                    profesor = curso.profesor
+
+
+                });
+            }
+            */
+
+            return data;
         }
 
         // GET: api/Curso/5

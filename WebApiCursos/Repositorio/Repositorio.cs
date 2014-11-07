@@ -81,6 +81,7 @@ namespace WebApiCursos.Repositorio
 
         public virtual int Actualizar(TEntidad modelo)
         {
+
             Context.Entry(modelo).State = EntityState.Modified;
             int n = 0;
             try
@@ -94,7 +95,7 @@ namespace WebApiCursos.Repositorio
             return n;
 
         }
-
+         
         public virtual List<TEntidad> Get()
         {
             return DbSet.ToList();

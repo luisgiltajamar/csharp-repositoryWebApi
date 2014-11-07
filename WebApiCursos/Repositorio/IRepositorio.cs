@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 
 namespace WebApiCursos.Repositorio
 {
-    interface IRepositorio<TEntidad>
+    interface IRepositorio<TViewModel,TEntidad>
     {
-        int Add(TEntidad modelo);
+        TViewModel Add(TViewModel modelo);
         int Borrar(int id);
+        int Borrar(TViewModel modelo);
         int Borrar(Expression<Func<TEntidad, bool>> lam);
-        int Actualizar(TEntidad modelo);
-        List<TEntidad> Get();
-        List<TEntidad> Get(Expression<Func<TEntidad, bool>> lam);
-        TEntidad Get(int pk);
+        int Actualizar(TViewModel modelo);
+        List<TViewModel> Get();
+        List<TViewModel> Get(Expression<Func<TEntidad, bool>> lam);
+        TViewModel Get(int pk);
+        TEntidad GetModelPorPk(TViewModel model);
 
 
     }

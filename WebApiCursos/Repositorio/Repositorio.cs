@@ -54,9 +54,26 @@ namespace WebApiCursos.Repositorio
         public virtual int Borrar(int id)
         {
 
-            var obj = Get(id);
+            var mod = DbSet.Find(id);
+            DbSet.Remove(mod);
+            int n = 0;
+            try
+            {
+                n = Context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
-            DbSet.Remove(obj);
+            return n;
+        }
+
+        public int Borrar(TViewModel modelo)
+        {
+            var dato = GetModelDesdeViewModel(modelo);
+
+            DbSet.Remove(dato);
             int n = 0;
             try
             {
@@ -72,7 +89,7 @@ namespace WebApiCursos.Repositorio
 
         public virtual int Borrar(Expression<Func<TEntidad, bool>> lam)
         {
-            var datos = Get(lam);
+            var datos = DbSet.Where(lam);
             DbSet.RemoveRange(datos);
             int n = 0;
             try

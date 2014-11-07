@@ -12,49 +12,32 @@ namespace WebApiCursos.Controllers
 {
     public class CursoController : ApiController
     {
-        private IRepositorio<Curso> repo=
-            new Repositorio<Curso>(new cursoEntities());
+        private IRepositorio<CursoViewModel,Curso> repo=
+            new Repositorio<CursoViewModel,Curso>
+                (new cursoEntities());
 
         // GET: api/Curso
-        public IEnumerable<Curso> Get()
+        public IEnumerable<CursoViewModel> Get()
         {
             var data = repo.Get();
-           /* List<CursoViewModel> lc=new List<CursoViewModel>();
-
-            foreach (var curso in data)
-            {
-                lc.Add(new CursoViewModel()
-                {
-                    idCurso = curso.idCurso,
-                    NombreProfesor = curso.Profesor1.nombre,
-                    nombre = curso.nombre,
-                    duracion = curso.duracion,
-                    inicio = curso.inicio,
-                    profesor = curso.profesor
-
-
-                });
-            }
-            */
-
             return data;
         }
 
         // GET: api/Curso/5
-        public Curso Get(int id)
+        public CursoViewModel Get(int id)
         {
             return repo.Get(id);
         }
 
         // POST: api/Curso
-        public void Post([FromBody]Curso value)
+        public void Post([FromBody]CursoViewModel value)
         {
             repo.Add(value);
 
         }
 
         // PUT: api/Curso/5
-        public void Put([FromBody]Curso value)
+        public void Put([FromBody]CursoViewModel value)
         {
             repo.Actualizar(value);
         }

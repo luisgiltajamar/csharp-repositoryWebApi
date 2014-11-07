@@ -14,7 +14,7 @@ namespace WebApiCursos.Models.ViewModel
         public int duracion { get; set; }
         public String NombreProfesor { get; set; }
 
-        public Curso ToModel()
+        public Curso ToBaseDatos()
         {
             var model = new Curso()
             {
@@ -28,7 +28,7 @@ namespace WebApiCursos.Models.ViewModel
             return model;
         }
 
-        public void FromModel(Curso model)
+        public void FromBaseDatos(Curso model)
         {
             idCurso = model.idCurso;
             nombre = model.nombre;
@@ -45,7 +45,7 @@ namespace WebApiCursos.Models.ViewModel
             }
         }
 
-        public void UpdateModel(Curso model)
+        public void UpdateBaseDatos(Curso model)
         {
             model.idCurso = idCurso;
             model.nombre = nombre;

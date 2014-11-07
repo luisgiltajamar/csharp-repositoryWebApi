@@ -17,7 +17,7 @@ namespace WebApiCursos.Repositorio
         List<TViewModel> Get();
         List<TViewModel> Get(Expression<Func<TEntidad, bool>> lam);
         TViewModel Get(int pk);
-        TEntidad GetModelPorPk(TViewModel model);
+        TEntidad GetModelDesdeViewModel(TViewModel model);
 
 
     }

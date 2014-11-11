@@ -9,6 +9,8 @@ namespace WebApiCursos
     {
         public static void Register(HttpConfiguration config)
         {
+
+
             // Web API configuration and services
             var json = config.Formatters.JsonFormatter;
             json.SerializerSettings.PreserveReferencesHandling =
@@ -17,11 +19,20 @@ namespace WebApiCursos
 
            config.Formatters.Remove(config.Formatters.XmlFormatter);
             // Web API routes
+            config.EnableCors();
+            
             config.MapHttpAttributeRoutes();
+
+
+            config.Routes.MapHttpRoute(
+                name: "CursoNombre",
+                routeTemplate: "v1/{controller}/PorNombre/{nombre}",
+                defaults: new { nombre = RouteParameter.Optional }
+            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "v1/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
         }

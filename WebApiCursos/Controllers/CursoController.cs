@@ -4,12 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebApiCursos.Models;
 using WebApiCursos.Models.ViewModel;
 using WebApiCursos.Repositorio;
 
 namespace WebApiCursos.Controllers
 {
+    [EnableCors("*","*","*")]
     public class CursoController : ApiController
     {
         private IRepositorio<CursoViewModel,Curso> repo=
@@ -28,7 +30,10 @@ namespace WebApiCursos.Controllers
         {
             return repo.Get(id);
         }
-
+        public IEnumerable<CursoViewModel> Get(String nombre)
+        {
+            return repo.Get(o=>o.nombre==nombre);
+        }
         // POST: api/Curso
         public void Post([FromBody]CursoViewModel value)
         {

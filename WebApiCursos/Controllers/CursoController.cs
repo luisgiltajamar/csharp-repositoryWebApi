@@ -31,9 +31,19 @@ namespace WebApiCursos.Controllers
             return repo.Get(id);
         }
         [HttpGet]
-        public IEnumerable<CursoViewModel> ByNombre(String nombre)
+        public IEnumerable<CursoViewModel> ByNombre(String args)
         {
-            return repo.Get(o=>o.nombre==nombre);
+            return repo.Get(o => o.nombre == args);
+        }
+        [HttpGet]
+        public IEnumerable<CursoViewModel> ByDuracion(int args)
+        {
+            return repo.Get(o => o.duracion == args);
+        }
+        [HttpGet]
+        public IEnumerable<CursoViewModel> ByDuracionNombre(int args,String args2)
+        {
+            return repo.Get(o => o.duracion == args && o.nombre==args2);
         }
         // POST: api/Curso
         public void Post([FromBody]CursoViewModel value)

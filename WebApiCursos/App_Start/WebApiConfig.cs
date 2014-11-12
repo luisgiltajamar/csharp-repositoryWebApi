@@ -25,9 +25,20 @@ namespace WebApiCursos
 
 
             config.Routes.MapHttpRoute(
-                name: "CursoNombre",
-                routeTemplate: "v1/{controller}/{action}/{nombre}",
-                defaults: new { nombre = RouteParameter.Optional }
+                name: "Curso1P",
+                routeTemplate: "v1/{controller}/{action}/{args}",
+                defaults: new { args = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "Curso2P",
+                routeTemplate: "v1/{controller}/{action}/{args}/{args2}",
+                defaults: new
+                {
+                    args = RouteParameter.Optional,
+                    args2 = RouteParameter.Optional
+
+                }
             );
 
             config.Routes.MapHttpRoute(

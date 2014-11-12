@@ -30,7 +30,8 @@ namespace WebApiCursos.Controllers
         {
             return repo.Get(id);
         }
-        public IEnumerable<CursoViewModel> Get(String nombre)
+        [HttpGet]
+        public IEnumerable<CursoViewModel> ByNombre(String nombre)
         {
             return repo.Get(o=>o.nombre==nombre);
         }
